@@ -23,6 +23,8 @@ from Healthy_FoodApp.views import sing_upPage,sing_inPage,forgotPage,landingpage
     quizPage,resetpasswordPage,newpasswordPage,lunchPage,dinnerPage,dessertsPage,certificatePage,eggsPage,omlettePage,\
     wrapPage,nuttyPage,steakPage,spaghettiPage,mushroomsPage,chiaPage,browniesPage
 
+from django.views.static import serve
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -49,6 +51,8 @@ urlpatterns = [
     path('mushroomsPage', mushroomsPage, name='mushroomsPage'),
     path('chiaPage', chiaPage, name='chiaPage'),
     path('browniesPage', browniesPage, name='browniesPage'),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
